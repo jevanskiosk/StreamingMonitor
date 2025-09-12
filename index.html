@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fullscreen Playlist with Overlapping Crawl</title>
+  <title>Fullscreen Playlist with Continuous Crawl</title>
   <style>
     html, body {
       margin: 0;
@@ -39,12 +39,12 @@
     /* Moving belt */
     .crawler__inner {
       display: inline-block;
-      animation: crawl 60s linear infinite; /* keep it slow */
+      animation: crawl 40s linear infinite; /* was 60s, now 40s (50% faster) */
     }
 
     .crawler__text {
       display: inline-block;
-      padding-right: 10rem; /* spacing between repeats */
+      padding-right: 10rem; /* space between repeats */
       font-size: 4rem;
       font-weight: bold;
       color: white;
@@ -59,7 +59,7 @@
 
     @keyframes crawl {
       0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* only shift half, because we doubled the content */
+      100% { transform: translateX(-50%); } /* half width because text is duplicated */
     }
 
     @media (max-width: 600px) {
