@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fullscreen Playlist with Crawling Text</title>
+  <title>Fullscreen Playlist with Crawling Text + Arrows</title>
   <style>
     html, body {
       margin: 0;
@@ -27,23 +27,23 @@
     /* Overlay container */
     .crawler {
       position: fixed;
-      top: 10%; /* adjust vertical position */
+      bottom: 5%; /* at bottom */
       left: 0;
       right: 0;
       z-index: 10;
-      pointer-events: none; /* allows clicking on video */
+      pointer-events: none;
       overflow: hidden;
       white-space: nowrap;
     }
 
     .crawler__text {
       display: inline-block;
-      font-size: 2rem;
+      min-width: 200%;
+      font-size: 4rem; /* big text */
       font-weight: bold;
       color: white;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-      padding-left: 100%; /* start offscreen right */
-      animation: crawl 30s linear infinite; /* adjust speed */
+      text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+      animation: crawl 60s linear infinite; /* slow crawl */
     }
 
     @keyframes crawl {
@@ -52,7 +52,7 @@
     }
 
     @media (max-width: 600px) {
-      .crawler__text { font-size: 1.2rem; }
+      .crawler__text { font-size: 2rem; }
     }
   </style>
 </head>
@@ -64,10 +64,10 @@
     referrerpolicy="strict-origin-when-cross-origin">
   </iframe>
 
-  <!-- Crawling text overlay -->
+  <!-- Crawling text overlay with arrows -->
   <div class="crawler">
     <span class="crawler__text">
-      See a book that interests you? Check the shelf below for a copy!
+      ⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️
     </span>
   </div>
 </body>
