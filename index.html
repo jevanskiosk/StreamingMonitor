@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fullscreen Playlist with Continuous Crawl</title>
+  <title>Fullscreen Playlist with Faster Crawl</title>
   <style>
     html, body {
       margin: 0;
@@ -39,7 +39,7 @@
     /* Moving belt */
     .crawler__inner {
       display: inline-block;
-      animation: crawl 40s linear infinite; /* was 60s, now 40s (50% faster) */
+      animation: crawl 20s linear infinite; /* was 40s, now 20s (faster) */
     }
 
     .crawler__text {
@@ -59,7 +59,7 @@
 
     @keyframes crawl {
       0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* half width because text is duplicated */
+      100% { transform: translateX(-50%); }
     }
 
     @media (max-width: 600px) {
