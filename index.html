@@ -14,23 +14,14 @@
       overflow: hidden;
     }
 
-    .video-container {
+    #player {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
+      width: 100vw;
+      height: 100vh;
       z-index: 1;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+      pointer-events: none; /* block user interaction */
     }
 
     .crawler {
@@ -77,14 +68,8 @@
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/videoseries?list=PLoNXhSmdR5P0RJbUfDWx_xLXomzjjHDD2&autoplay=1&loop=1&playlist=PLoNXhSmdR5P0RJbUfDWx_xLXomzjjHDD2&controls=0&modestbranding=1&rel=0&showinfo=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      referrerpolicy="strict-origin-when-cross-origin">
-    </iframe>
-  </div>
+  <!-- YouTube API will replace this -->
+  <div id="player"></div>
 
   <div class="crawler">
     <div class="crawler__inner">
@@ -92,5 +77,40 @@
       <span class="crawler__text">🎃 Happy Halloween from Mayfair's Library! 🎃</span>
     </div>
   </div>
+
+  <script>
+    // Load YouTube API
+    let tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("player", {
+        height: "100%",
+        width: "100%",
+        playerVars: {
+          listType: "playlist",
+          list: "PLoNXhSmdR5P0RJbUfDWx_xLXomzjjHDD2",
+          autoplay: 1,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          showinfo: 0,
+          loop: 1,
+          fs: 0,
+          iv_load_policy: 3, // hide annotations
+          disablekb: 1       // disable keyboard
+        },
+        events: {
+          onReady: (event) => {
+            event.target.mute(); // optional: autoplay usually requires mute
+            event.target.playVideo();
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
