@@ -3,58 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fullscreen Playlist with Faster Crawl</title>
+  <title>Halloween Playlist with Crawl</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background-color: black;
       height: 100%;
       width: 100%;
+      background-color: black;
       overflow: hidden;
     }
 
-    iframe {
+    .video-container {
       position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+      z-index: 1;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100vw;
       height: 100vh;
       border: none;
-      background-color: black;
     }
 
-    /* Overlay container */
     .crawler {
       position: fixed;
       bottom: 5%;
       left: 0;
       right: 0;
-      z-index: 10;
+      z-index: 2;
       pointer-events: none;
       overflow: hidden;
       white-space: nowrap;
     }
 
-    /* Moving belt */
     .crawler__inner {
       display: inline-block;
-      animation: crawl 20s linear infinite; /* was 40s, now 20s (faster) */
+      animation: crawl 25s linear infinite;
     }
 
     .crawler__text {
       display: inline-block;
-      padding-right: 10rem; /* space between repeats */
+      padding-right: 10rem;
       font-size: 4rem;
       font-weight: bold;
-      color: white;
-
-      /* Highlighting */
+      color: orange;
       -webkit-text-stroke: 2px black;
       text-shadow: 
-        2px 2px 6px rgba(0,0,0,0.9),
-        -2px -2px 6px rgba(0,0,0,0.9),
-        0 0 10px rgba(0,0,0,0.8);
+        0 0 10px #ff6600,
+        0 0 20px #ff3300,
+        0 0 30px #ff0000,
+        2px 2px 6px rgba(0,0,0,0.9);
     }
 
     @keyframes crawl {
@@ -63,23 +71,27 @@
     }
 
     @media (max-width: 600px) {
-      .crawler__text { font-size: 2rem; -webkit-text-stroke: 1px black; }
+      .crawler__text {
+        font-size: 2rem;
+        -webkit-text-stroke: 1px black;
+      }
     }
   </style>
 </head>
 <body>
-  <iframe 
-    src="https://www.youtube.com/embed/videoseries?si=lQ9wsZShUnQp3bOe&list=PLoNXhSmdR5P0yVCalah1sB2foPWI3_owG&autoplay=1&loop=1&mute=0&playlist=PLoNXhSmdR5P0yVCalah1sB2foPWI3_owG"
-    allow="fullscreen; encrypted-media"
-    allowfullscreen
-    referrerpolicy="strict-origin-when-cross-origin">
-  </iframe>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed?list=PLoNXhSmdR5P0RJbUfDWx_xLXomzjjHDD2&autoplay=1&loop=1&playlist=PLoNXhSmdR5P0RJbUfDWx_xLXomzjjHDD2&controls=0&modestbranding=1"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+  </div>
 
-  <!-- Continuous overlapping crawling text overlay -->
   <div class="crawler">
     <div class="crawler__inner">
-      <span class="crawler__text">⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️</span>
-      <span class="crawler__text">⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️</span>
+      <span class="crawler__text">🎃 Happy Halloween from Mayfair's Library! 🎃</span>
+      <span class="crawler__text">🎃 Happy Halloween from Mayfair's Library! 🎃</span>
     </div>
   </div>
 </body>
