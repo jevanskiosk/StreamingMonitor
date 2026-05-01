@@ -24,7 +24,6 @@
       background-color: black;
     }
 
-    /* Overlay container */
     .crawler {
       position: fixed;
       bottom: 5%;
@@ -36,20 +35,17 @@
       white-space: nowrap;
     }
 
-    /* Moving belt */
     .crawler__inner {
       display: inline-block;
-      animation: crawl 20s linear infinite; /* was 40s, now 20s (faster) */
+      animation: crawl 20s linear infinite;
     }
 
     .crawler__text {
       display: inline-block;
-      padding-right: 10rem; /* space between repeats */
+      padding-right: 10rem;
       font-size: 4rem;
       font-weight: bold;
       color: white;
-
-      /* Highlighting */
       -webkit-text-stroke: 2px black;
       text-shadow: 
         2px 2px 6px rgba(0,0,0,0.9),
@@ -69,17 +65,15 @@
 </head>
 <body>
   <iframe 
-    src="https://www.youtube.com/embed/videoseries?si=lQ9wsZShUnQp3bOe&list=PLoNXhSmdR5P0yVCalah1sB2foPWI3_owG&autoplay=1&loop=1&mute=0&playlist=PLoNXhSmdR5P0yVCalah1sB2foPWI3_owG"
-    allow="fullscreen; encrypted-media"
-    allowfullscreen
-    referrerpolicy="strict-origin-when-cross-origin">
+    src="https://www.youtube.com/embed/videoseries?list=PLoNXhSmdR5P2k5pFKmFZQ7GzIQ_rC21pC&playlist=PLoNXhSmdR5P2k5pFKmFZQ7GzIQ_rC21pC&autoplay=1&loop=1&mute=1&playsinline=1&controls=0"
+    allow="autoplay; fullscreen; encrypted-media"
+    allowfullscreen>
   </iframe>
 
-  <!-- Continuous overlapping crawling text overlay -->
   <div class="crawler">
     <div class="crawler__inner">
-      <span class="crawler__text">⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️</span>
-      <span class="crawler__text">⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️</span>
+      <span class="crawler__text">🚀 Sci-Fi is May's genre of the month! See something you like? Check the cart below 👇🏼</span>
+      <span class="crawler__text">🚀 Sci-Fi is May's genre of the month! See something you like? Check the cart below 👇🏼</span>
     </div>
   </div>
 </body>
