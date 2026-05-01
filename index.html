@@ -1,158 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Virtual Librarian</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fullscreen Playlist with Faster Crawl</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
 
-html,body {
-  margin:0;
-  padding:0;
-  height:100%;
-  width:100%;
-  font-family:'Baloo 2',cursive,sans-serif;
-  background:url('backgroundwithbubble.png') no-repeat center center fixed;
-  background-size:cover;
-  overflow-x:hidden;
-  overflow-y:hidden;
-}
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      background-color: black;
+    }
 
-/* Crawl bar */
-.crawl {
-  width:100%;
-  color:#fff;
-  padding:10px 0;
-  font-size:36px;
-  overflow:hidden;
-  white-space:nowrap;
-  text-shadow:1px 1px 4px rgba(0,0,0,.8);
-  z-index:10;
-}
-.crawl span {
-  display:inline-block;
-  padding-left:100%;
-  animation:scroll-left 50s linear infinite;
-}
-@keyframes scroll-left {
-  0% { transform:translateX(0); }
-  100% { transform:translateX(-100%); }
-}
+    /* Overlay container */
+    .crawler {
+      position: fixed;
+      bottom: 5%;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      pointer-events: none;
+      overflow: hidden;
+      white-space: nowrap;
+    }
 
-/* Layout */
-.container {
-  display:flex;
-  flex-direction:row;
-  align-items:flex-start;
-  padding:0 40px;
-  gap:60px;
-  margin-top:10px;
-}
+    /* Moving belt */
+    .crawler__inner {
+      display: inline-block;
+      animation: crawl 20s linear infinite; /* was 40s, now 20s (faster) */
+    }
 
-/* Fall leaf border wrapper */
-.chatbot-wrapper {
-  display:inline-block;
-  padding:12px; /* space between iframe and leaves */
-  border:24px solid transparent;
-  border-radius:18px;
-  box-sizing:border-box;
+    .crawler__text {
+      display: inline-block;
+      padding-right: 10rem; /* space between repeats */
+      font-size: 4rem;
+      font-weight: bold;
+      color: white;
 
-  /* Replace this URL with your fall leaves border image */
-  border-image: url('fall-leaves-border.png') 40 round;
-}
+      /* Highlighting */
+      -webkit-text-stroke: 2px black;
+      text-shadow: 
+        2px 2px 6px rgba(0,0,0,0.9),
+        -2px -2px 6px rgba(0,0,0,0.9),
+        0 0 10px rgba(0,0,0,0.8);
+    }
 
-.chatbot {
-  width:26vw;
-  height:85vh;
-  border:none;
-  border-radius:12px;
-  background:transparent;
-  box-shadow:0 0 10px rgba(0,0,0,.3);
-  z-index:5;
-}
+    @keyframes crawl {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-.sidebar {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  max-width:380px;
-  color:#fff;
-  text-shadow:1px 1px 4px rgba(0,0,0,.7);
-  margin-left:225px;
-  margin-top:305px;
-  z-index:5;
-}
-
-/* QR section */
-.qr-section {
-  text-align:center;
-  margin-bottom:20px;
-  margin-top:30px;
-  text-shadow:2px 2px 6px rgba(0,0,0,0.9);
-}
-.qr-section h3 {
-  font-size:30px;
-  margin-bottom:10px;
-}
-.qr-section img {
-  width:144px;
-  height:144px;
-  display:block;
-  margin:0 auto;
-}
-
-/* Responsive */
-@media(max-width:800px) {
-  .container {
-    flex-direction:column;
-    align-items:center;
-    gap:30px;
-    padding:20px;
-    margin-left:0;
-  }
-  .chatbot-wrapper {
-    border-width:16px;
-    padding:8px;
-  }
-  .chatbot {
-    width:90vw;
-    height:75vh;
-    margin-left:0;
-  }
-  .sidebar {
-    align-items:center;
-    max-width:90%;
-    margin-left:0;
-    margin-top:0;
-  }
-  .qr-section h3 {
-    font-size:27px;
-  }
-  .qr-section img {
-    width:117px;
-    height:117px;
-  }
-}
-</style>
+    @media (max-width: 600px) {
+      .crawler__text { font-size: 2rem; -webkit-text-stroke: 1px black; }
+    }
+  </style>
 </head>
 <body>
-<div class="crawl">
-  <span>⚠️ AI may give incorrect or outdated information — verify important details. • Never share personal or sensitive data. • This chatbot is a support tool, not a replacement for professional advice.</span>
-</div>
+  <iframe 
+    src="https://www.youtube.com/embed/videoseries?si=lQ9wsZShUnQp3bOe&list=PLoNXhSmdR5P0yVCalah1sB2foPWI3_owG&autoplay=1&loop=1&mute=0&playlist=PLoNXhSmdR5P0yVCalah1sB2foPWI3_owG"
+    allow="fullscreen; encrypted-media"
+    allowfullscreen
+    referrerpolicy="strict-origin-when-cross-origin">
+  </iframe>
 
-<div class="container">
-  <!-- Chatbot with leaf border -->
-  <div class="chatbot-wrapper">
-    <iframe class="chatbot" src="https://www.playlab.ai/embedded/cma1lng2i17v6rgigh3onpno7" allow="clipboard-write"></iframe>
-  </div>
-
-  <div class="sidebar">
-    <div class="qr-section">
-      <h3>Check us out on YouTube</h3>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.youtube.com/c/mrevans" alt="QR code for Mr. Evans YouTube channel">
+  <!-- Continuous overlapping crawling text overlay -->
+  <div class="crawler">
+    <div class="crawler__inner">
+      <span class="crawler__text">⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️</span>
+      <span class="crawler__text">⬇️⬇️ See a book that interests you? Check the shelf below for a copy! ⬇️⬇️</span>
     </div>
   </div>
-</div>
 </body>
 </html>
