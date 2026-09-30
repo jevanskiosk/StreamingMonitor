@@ -56,10 +56,8 @@
 
       color: #ff6a00;
 
-      /* Dark outline */
       -webkit-text-stroke: 2px black;
 
-      /* Spooky glow/shadow */
       text-shadow:
         3px 3px 0 #000,
         -3px -3px 0 #000,
@@ -79,8 +77,8 @@
       }
     }
 
-    /* Subtle dark strip behind the crawl
-       so it remains readable over videos */
+    /* Dark transparent area behind crawl
+       for better readability */
     .crawler::before {
       content: "";
       position: absolute;
@@ -107,7 +105,10 @@
 
 <body>
 
-  <!-- Fullscreen YouTube Playlist -->
+  <!-- ==========================================
+       FULLSCREEN YOUTUBE OCTOBER HORROR PLAYLIST
+       ========================================== -->
+
   <iframe
     src="https://www.youtube.com/embed/videoseries?si=29qGwGn2G5J4Ln1j&list=PLoNXhSmdR5P32cY027P9Aq_VWI6Xk4Bw6&autoplay=1&loop=1&mute=0&playlist=PLoNXhSmdR5P32cY027P9Aq_VWI6Xk4Bw6"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
@@ -115,19 +116,29 @@
     referrerpolicy="strict-origin-when-cross-origin">
   </iframe>
 
-  <!-- Spooky October Horror Crawl -->
+
+  <!-- ==========================================
+       SPOOKY OCTOBER HORROR CRAWL
+       ========================================== -->
+
   <div class="crawler">
+
     <div class="crawler__inner">
 
       <span class="crawler__text">
-        🕷️🕸️ OCTOBER HORROR — Dare to enter the library... if you’re brave enough. 📚💀
+        🕷️ 🕸️ OCTOBER HORROR 🕸️ 🕷️
+        Enter the library... if you dare!
+        📚 💀 👻
       </span>
 
       <span class="crawler__text">
-        🕷️🕸️ OCTOBER HORROR — Dare to enter the library... if you’re brave enough. 📚💀
+        🕷️ 🕸️ OCTOBER HORROR 🕸️ 🕷️
+        Enter the library... if you dare!
+        📚 💀 👻
       </span>
 
     </div>
+
   </div>
 
 </body>
